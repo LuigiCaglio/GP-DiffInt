@@ -14,18 +14,19 @@ Companion notebooks for the paper:
 | `02_Illustrative_Example_2_Integration_Lorenz.ipynb` | GP **integration**: recover displacement from noisy velocity — Lorenz attractor (Figure 4) |
 | `03_Application_WindTurbine_Accel_to_Displacement.ipynb` | GP **double integration**: recover displacement from noisy acceleration — wind turbine SHM application (Figures 6–7) |
 
-Each notebook is self-contained and can be run independently.
+All notebooks are pre-executed and self-contained — figures and results are visible directly in the browser without running anything.
 
 ---
 
 ## Repository structure
 
+All files are in this folder:
+
 ```
-GP-DiffInt/
-├── notebooks/                   ← you are here
-│   ├── 01_...Duffing.ipynb
-│   ├── 02_...Lorenz.ipynb
-│   └── 03_...WindTurbine.ipynb
+notebooks/
+├── 01_Illustrative_Example_1_Differentiation_Duffing.ipynb
+├── 02_Illustrative_Example_2_Integration_Lorenz.ipynb
+├── 03_Application_WindTurbine_Accel_to_Displacement.ipynb
 ├── data_generation.py           ← ODE solvers and data loaders
 ├── gp_optimization.py           ← NLL optimisation (Algorithms 1 & 2)
 ├── KalmanFilter_functions.py    ← Kalman filter + RTS smoother
@@ -33,8 +34,6 @@ GP-DiffInt/
 ├── plotting_functions.py        ← plotting utilities
 └── windturbine2D.txt            ← wind turbine simulation data
 ```
-
-The notebooks add the parent directory to `sys.path` automatically, so the helper modules are importable without any installation step.
 
 ---
 
