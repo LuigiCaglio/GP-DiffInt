@@ -1,66 +1,53 @@
-# GP Differentiation and Integration — Notebooks
+GP‑DiffInt
+Gaussian‑Process‑based Differentiation and Integration of Time Series
+Code accompanying the paper:
+Differentiation and Integration of Time Series via Gaussian Process Regression for Structural Health Monitoring Applications
 
-Companion notebooks for the paper:
+📘 Overview
+This repository contains the Python code used to reproduce the numerical examples and figures in the paper:
 
-> **Differentiation and Integration of Time Series via Gaussian Process Regression for Structural Health Monitoring Applications**
+Differentiation and Integration of Time Series via Gaussian Process Regression for Structural Health Monitoring Applications
 
----
+The code implements:
 
-## Contents
+A state‑space representation of the Matérn 5/2 Gaussian Process
+A Kalman filter + Rauch–Tung–Striebel smoother for estimating displacement, velocity, and acceleration
 
-| Notebook | Description |
+
+The method works by selecting which derivative of the GP is *observed*:
+
+| Task | `observed_derivative` |
 |---|---|
-| `01_Illustrative_Example_1_Differentiation_Duffing.ipynb` | GP **differentiation**: recover velocity and acceleration from noisy displacement — Duffing oscillator (Figure 3) |
-| `02_Illustrative_Example_2_Integration_Lorenz.ipynb` | GP **integration**: recover displacement from noisy velocity — Lorenz attractor (Figure 4) |
-| `03_Application_WindTurbine_Accel_to_Displacement.ipynb` | GP **double integration**: recover displacement from noisy acceleration — wind turbine SHM application (Figures 6–7) |
+| Differentiate a displacement signal → velocity, acceleration | `0` |
+| Integrate a velocity signal → displacement | `1` |
+| Double-integrate an acceleration signal → displacement | `2` |
 
-All notebooks are pre-executed and self-contained — figures and results are visible directly in the browser without running anything.
+Hyperparameters (length scale and output scale) are optimised by minimising the negative log-likelihood, optionally subject to physically motivated constraints.
 
 ---
 
 ## Repository structure
-
-All files are in this folder:
-
 ```
-notebooks/
-├── 01_Illustrative_Example_1_Differentiation_Duffing.ipynb
-├── 02_Illustrative_Example_2_Integration_Lorenz.ipynb
-├── 03_Application_WindTurbine_Accel_to_Displacement.ipynb
-├── data_generation.py           ← ODE solvers and data loaders
-├── gp_optimization.py           ← NLL optimisation (Algorithms 1 & 2)
-├── KalmanFilter_functions.py    ← Kalman filter + RTS smoother
-├── Matern_52_state_space.py     ← Matérn 5/2 state-space matrices
-├── plotting_functions.py        ← plotting utilities
-└── windturbine2D.txt            ← wind turbine simulation data
+Main files:
+├── Illustrative_example_1_2nd_derivative_Duffing.py # Section 4 paper
+├── Illustrative_example_2_1st_integral_Lorenz.py # Section 4 paper
+├── Application_displ_from_accel_wind_turbine.py  # Section 5 paper
+Additional files:
+├── gp_optimization.py             # NLL objective, optimisation routines, state extraction
+├── Matern_52_state_space.py       # Matérn 5/2 state-space matrices (A, Qd, Pinf, D0, D1, D2)
+├── KalmanFilter_functions.py      # Kalman filter and RTS smoother
+├── plotting_functions.py          # Plotting utilities
+├── data_generation.py             # Example data utilities
+└── README.md
 ```
 
 ---
 
-## Dependencies
+## Requirements
 
+Python 3.10+. Dependencies:
 ```
 numpy
 scipy
 matplotlib
 ```
-
-Install with:
-
-```bash
-pip install numpy scipy matplotlib
-```
-
----
-
-## Method overview
-
-The core idea is to represent the unknown time series as a **Matérn 5/2 Gaussian Process** and exploit the fact that its state-space form places the signal and all its derivatives inside a single 3-dimensional latent state:
-
-$$\mathbf{z}(t) = \begin{bmatrix} x(t) \\ \dot{x}(t) \\ \ddot{x}(t) \end{bmatrix}$$
-
-Observations of **any** derivative are fused via a Kalman filter, and the RTS smoother recovers the full posterior over all derivatives simultaneously — including uncertainty quantification.
-
-- **Differentiation**: observe $x(t)$, read off $\dot{x}$ and $\ddot{x}$ from the smoothed state.
-- **Integration**: observe $\dot{x}(t)$, read off $x(t)$ from the smoothed state.
-- **Double integration**: observe $\ddot{x}(t)$, read off $x(t)$ from the smoothed state.
