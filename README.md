@@ -32,16 +32,6 @@ If you use this code, please cite:
 
 > Caglio, L., Andersen, M. S., Paltorp, M., & Katsanos, E. (2026). Differentiation and integration of time series via Gaussian process regression for structural health monitoring applications. *Measurement*, 121367.
 
-```bibtex
-@article{caglio2026differentiation,
-  title     = {Differentiation and integration of time series via Gaussian process regression for structural health monitoring applications},
-  author    = {Caglio, Luigi and Andersen, Mads S. and Paltorp, Martin and Katsanos, Evangelos},
-  journal   = {Measurement},
-  pages     = {121367},
-  year      = {2026},
-  publisher = {Elsevier}
-}
-```
 
 ---
 
