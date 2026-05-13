@@ -2,8 +2,10 @@
 Example 1: GP regression on Duffing oscillator response
 using Matérn 5/2 state-space model with joint hyperparameter optimization.
 
-Reproduces Figure 3 from: Differentiation and Integration of Time Series via Gaussian Process
-                          Regression for Structural Health Monitoring Applications
+Reproduces Figure 3 from:
+    Caglio, L., Andersen, M. S., Paltorp, M., & Katsanos, E. (2026).
+    Differentiation and integration of time series via Gaussian process
+    regression for structural health monitoring applications. Measurement, 121367.
 """
 import numpy as np
 import matplotlib.pyplot as plt
