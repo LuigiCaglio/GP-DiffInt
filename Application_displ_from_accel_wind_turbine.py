@@ -1,9 +1,11 @@
 """
-Example 1: GP regression on Duffing oscillator response
-using Matérn 5/2 state-space model with joint hyperparameter optimization.
+Application: GP-based double integration of wind turbine acceleration data
+using Matérn 5/2 state-space model with constrained hyperparameter optimization.
 
-Reproduces Figures 6 and 7 (Section 5) from: Differentiation and Integration of Time Series via Gaussian Process
-                          Regression for Structural Health Monitoring Applications
+Reproduces Figures 6 and 7 (Section 5) from:
+    Caglio, L., Andersen, M. S., Paltorp, M., & Katsanos, E. (2026).
+    Differentiation and integration of time series via Gaussian process
+    regression for structural health monitoring applications. Measurement, 121367.
 """
 
 import numpy as np

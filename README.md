@@ -26,13 +26,36 @@ Hyperparameters (length scale and output scale) are optimised by minimising the 
 
 ---
 
+## Citation
+
+If you use this code, please cite:
+
+> Caglio, L., Andersen, M. S., Paltorp, M., & Katsanos, E. (2026). Differentiation and integration of time series via Gaussian process regression for structural health monitoring applications. *Measurement*, 121367.
+
+```bibtex
+@article{caglio2026differentiation,
+  title     = {Differentiation and integration of time series via Gaussian process regression for structural health monitoring applications},
+  author    = {Caglio, Luigi and Andersen, Mads S. and Paltorp, Martin and Katsanos, Evangelos},
+  journal   = {Measurement},
+  pages     = {121367},
+  year      = {2026},
+  publisher = {Elsevier}
+}
+```
+
+---
+
 ## Repository structure
 ```
-Main files:
-├── Illustrative_example_1_2nd_derivative_Duffing.py # Section 4 paper
-├── Illustrative_example_2_1st_integral_Lorenz.py # Section 4 paper
-├── Application_displ_from_accel_wind_turbine.py  # Section 5 paper
-Additional files:
+Notebooks (interactive):
+├── 01_Illustrative_Example_1_Differentiation_Duffing.ipynb  # Section 4 — differentiation
+├── 02_Illustrative_Example_2_Integration_Lorenz.ipynb       # Section 4 — integration
+├── 03_Application_WindTurbine_Accel_to_Displacement.ipynb   # Section 5 — wind turbine
+Scripts (standalone):
+├── Illustrative_example_1_2nd_derivative_Duffing.py         # Section 4 paper
+├── Illustrative_example_2_1st_integral_Lorenz.py            # Section 4 paper
+├── Application_displ_from_accel_wind_turbine.py             # Section 5 paper
+Library modules:
 ├── gp_optimization.py             # NLL objective, optimisation routines, state extraction
 ├── Matern_52_state_space.py       # Matérn 5/2 state-space matrices (A, Qd, Pinf, D0, D1, D2)
 ├── KalmanFilter_functions.py      # Kalman filter and RTS smoother
